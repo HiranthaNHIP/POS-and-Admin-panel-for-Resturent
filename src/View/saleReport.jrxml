@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="556" pageHeight="707" columnWidth="556" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f34ca568-9108-4936-94ad-e74c68ed5f59">
+	<property name="ireport.zoom" value="1.4641000000000064"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="10"/>
+	<subDataset name="New Dataset 1" uuid="5c25b73b-b196-4b1b-970d-f2565c29ab8a">
+		<queryString language="SQL">
+			<![CDATA[SELECT mi.Item_Category, SUM(oi.Total) AS TotalIncome FROM orderitems oi INNER JOIN menuitem mi ON oi.ItemID = mi.ItemID GROUP BY mi.Item_Category;]]>
+		</queryString>
+		<field name="Item_Category" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TotalIncome" class="java.math.BigDecimal"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT SUM(CASE WHEN mi.Item_Category= 'Pizza' THEN oi.Total ELSE 0 END) AS PizzaSales, SUM(CASE WHEN mi.Item_Category = 'Beverages' THEN oi.Total ELSE 0 END) AS BeveragesSales, SUM(CASE WHEN mi.Item_Category = 'Appertizers ' THEN oi.Total ELSE 0 END) AS appetizersale, SUM(CASE WHEN mi.Item_Category = 'Desserts' THEN oi.Total ELSE 0 END) AS Dessertsale , SUM(Service_charges) AS TotalServiceCharges, SUM(Tax) AS TotalTax, SUM(OrderTotal) AS TotalSale, SUM(CASE WHEN OrderType = 'Take Away' THEN OrderTotal ELSE 0 END) AS TakeAwaySale, SUM(CASE WHEN OrderType = 'Dine In' THEN OrderTotal ELSE 0 END) AS DineInSale, MIN(OrderDate) AS StartDate, MAX(OrderDate) AS EndDate FROM orders o INNER JOIN orderitems oi ON o.OrderBILL = oi.OrderBILL INNER JOIN menuitem mi ON oi.ItemID = mi.ItemID WHERE o.OrderStatus = 'completed' AND o.OrderDate BETWEEN '2023-11-01' AND '2023-11-30';]]>
+	</queryString>
+	<field name="PizzaSales" class="java.math.BigDecimal"/>
+	<field name="BeveragesSales" class="java.math.BigDecimal"/>
+	<field name="appetizersale" class="java.math.BigDecimal"/>
+	<field name="Dessertsale" class="java.math.BigDecimal"/>
+	<field name="TotalServiceCharges" class="java.math.BigDecimal"/>
+	<field name="TotalTax" class="java.math.BigDecimal"/>
+	<field name="TotalSale" class="java.math.BigDecimal"/>
+	<field name="TakeAwaySale" class="java.math.BigDecimal"/>
+	<field name="DineInSale" class="java.math.BigDecimal"/>
+	<field name="StartDate" class="java.sql.Date"/>
+	<field name="EndDate" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="661" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="90" backcolor="#000000" uuid="e8e89554-32b9-47d5-a227-dffd6f88b5d1"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="25" y="268" width="510" height="393" uuid="3f492159-6d3b-4209-b4c5-65135516cee5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="79" width="100" height="18" forecolor="#FFFFFF" uuid="d99497c6-6b90-40a9-9b70-fe56354c034d"/>
+				<textElement>
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Tel : 0113108788]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="173" height="29" forecolor="#FFFFFF" uuid="fd0e3c82-4214-495b-a558-94ee3b3ec99c"/>
+				<textElement>
+					<font fontName="Forte" size="16"/>
+				</textElement>
+				<text><![CDATA[arthur's Pizza (Pvt).Ltd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="49" width="59" height="20" forecolor="#FFFFFF" uuid="67de6dde-5306-4b13-855b-75b0be31f534"/>
+				<textElement>
+					<font fontName="Segoe UI" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FROM    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="69" width="143" height="18" forecolor="#FFFFFF" uuid="f50c6efe-aa66-49c2-810f-0cb400bf706a"/>
+				<textElement>
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Colombo 00500 ,Sri Lanka]]></text>
+			</staticText>
+			<image>
+				<reportElement x="437" y="0" width="118" height="49" uuid="2d65c0e8-4e94-4e86-be8a-690b0bc58586"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\OneDrive\\Desktop\\cropped-arthurs-logo-01 (1).png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="437" y="71" width="59" height="20" forecolor="#FFFFFF" uuid="cc8db1ff-926e-4fba-8e0d-d54fce9a0597"/>
+				<textElement>
+					<font fontName="Segoe UI" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[To          :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="33" width="176" height="36" forecolor="#FF0033" uuid="459ef845-5a08-4529-b091-75173913fad1"/>
+				<textElement>
+					<font fontName="Segoe UI" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="173" height="20" forecolor="#FFFFFF" uuid="76c104a4-a4f8-430b-8996-1cb455e1a108"/>
+				<textElement>
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[No:185/7 Havelock Rd, ]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="496" y="49" width="59" height="20" forecolor="#FFFFFF" uuid="75199acc-2d3b-48aa-a68c-71ef3eb21a8d"/>
+				<textFieldExpression><![CDATA[$F{StartDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="496" y="71" width="59" height="20" forecolor="#FFFFFF" uuid="05e1fa29-85d9-4f1e-a8da-13a47ff0a45d"/>
+				<textFieldExpression><![CDATA[$F{EndDate}]]></textFieldExpression>
+			</textField>
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="100" y="91" width="364" height="177" uuid="13149828-6c2d-4afe-a2d0-30ea0cc94a73"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset>
+						<datasetRun subDataset="New Dataset 1" uuid="ab8044be-0325-4ce7-bcdc-51915d538805"/>
+					</dataset>
+					<keyExpression><![CDATA[$F{Item_Category}]]></keyExpression>
+					<valueExpression><![CDATA[$F{TotalIncome}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<textField>
+				<reportElement x="403" y="308" width="109" height="30" uuid="5e0fe9a1-d396-45b2-8bec-32f7369cd1b5"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DineInSale}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="346" width="109" height="25" uuid="fc500ab0-c2e3-4e25-894f-4c5013ab7d1e"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TotalServiceCharges}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="382" width="109" height="25" uuid="d47ff64d-e043-4cbc-9435-f05fe58c6b32"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TotalTax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="418" width="109" height="25" uuid="81ebf006-4af3-4031-bf97-e9dc7d08d153"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PizzaSales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="454" width="109" height="28" uuid="3a233579-e625-484e-a6a9-9a6afa1abdf9"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BeveragesSales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="274" width="109" height="31" uuid="18e3d33a-bebe-4d9d-9269-3d254b942964"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TakeAwaySale}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="52" y="275" width="236" height="31" uuid="4ccf6f85-36e1-4612-8d0e-7ce11379cc4e"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Take Away Orders Sale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="308" width="236" height="30" uuid="396561f3-e6ed-4efd-84cf-44db123fa017"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dine - In Orders Sale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="346" width="236" height="25" uuid="0dfb57eb-6c7f-481e-af17-6cca0dab0446"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Service Chargers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="382" width="236" height="25" uuid="cedd72fd-8346-41ff-b1e8-add69d685a0b"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Tax Fee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="418" width="236" height="23" uuid="f5c7ab27-8ce4-472b-b7d0-7507a8e3cb71"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pizza catagory Revenue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="454" width="236" height="28" uuid="9c41fd53-e9e0-4f23-840c-3a55e83efb5b"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bevrages catagory Revenue]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="403" y="494" width="109" height="28" uuid="2ffddfce-4a02-4172-a0ce-e1aa7cabb1f5"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{appetizersale}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="535" width="109" height="28" uuid="e0607f86-f071-44e0-b257-825fa8cfed21"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Dessertsale}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="52" y="494" width="236" height="28" uuid="dca8dcca-114a-4d37-b547-9018a9291403"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Appertizer catagory Revenue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="535" width="236" height="28" uuid="b066f52b-8dc7-4be9-a7db-69927ec5b4ad"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dessert catagory Revenue]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="38" y="584" width="484" height="65" uuid="d9b5d1ee-77cc-4aec-9289-ef385924f30e"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineColor="#FF0000"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="401" y="595" width="111" height="40" forecolor="#CC0000" uuid="6770739b-176e-4b7d-9590-03b2c4bb5850"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TotalSale}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="51" y="595" width="350" height="40" forecolor="#CC0000" uuid="f9a316b8-41eb-4537-a2e2-9bfa18f7c2cb"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Sales                                    Rs.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="5" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="11" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#000000" uuid="4fb4daa1-1837-46d7-afd2-bf27a8eb879a"/>
+			</rectangle>
+			<textField>
+				<reportElement x="514" y="0" width="41" height="20" forecolor="#FFFFFF" uuid="18583eee-c575-45ee-87e3-fc99581a7aec"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="8" y="0" width="146" height="20" forecolor="#FFFFFF" uuid="6f889433-6cfb-4cdc-a338-60e90e999777"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="154" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="3aa17869-fd3e-4e37-903f-caec8f1158ae"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="5" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a4b8f880-083f-4c64-92dd-6bd289b29047">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT ROW_NUMBER() OVER (ORDER BY SUM(oi.Quantity) + SUM(oi.Total) DESC) AS 'Rank', ci.Item_name AS 'Product Name', SUM(oi.Quantity) AS 'Sold Quantity', SUM(oi.Total) AS 'Total Income', SUM(oi.Quantity) + SUM(oi.Total) AS 'Total Quantity & Income', MIN(CASE WHEN o.OrderDate BETWEEN '2023-01-01' AND '2023-12-31' THEN o.OrderDate END) AS 'Start Date', MAX(CASE WHEN o.OrderDate BETWEEN '2023-01-01' AND '2023-12-31' THEN o.OrderDate END) AS 'End Date' FROM orderitems oi JOIN menuitem ci ON oi.ItemID = ci.ItemID JOIN orders o ON oi.OrderBILL = o.OrderBILL WHERE o.OrderDate BETWEEN '2023-01-01' AND '2023-12-31' GROUP BY ci.Item_name ORDER BY SUM(oi.Quantity) + SUM(oi.Total) DESC LIMIT 5;]]>
+	</queryString>
+	<field name="Rank" class="java.math.BigInteger"/>
+	<field name="Product Name" class="java.lang.String"/>
+	<field name="Sold Quantity" class="java.math.BigDecimal"/>
+	<field name="Total Income" class="java.math.BigDecimal"/>
+	<field name="Total Quantity &amp; Income" class="java.math.BigDecimal"/>
+	<field name="Start Date" class="java.sql.Date"/>
+	<field name="End Date" class="java.sql.Date"/>
+	<variable name="total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Total Income}]]></variableExpression>
+	</variable>
+	<variable name="otytotal" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Sold Quantity}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="336" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="97" backcolor="#000000" uuid="67a7cdba-ece7-48e9-ac55-12cda9341c13"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="437" y="57" width="59" height="20" forecolor="#FFFFFF" uuid="65c4068c-9e06-44a8-b053-2268ee1d708c"/>
+				<textElement>
+					<font fontName="Segoe UI" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FROM    :]]></text>
+			</staticText>
+			<image>
+				<reportElement x="437" y="0" width="118" height="49" uuid="c508df01-3508-4fd9-a05f-376cfe9c8182"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\OneDrive\\Desktop\\cropped-arthurs-logo-01 (1).png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="437" y="79" width="59" height="20" forecolor="#FFFFFF" uuid="93830b83-0f1e-411e-9d8c-337e945c1623"/>
+				<textElement>
+					<font fontName="Segoe UI" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[To          :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-422" y="77" width="262" height="22" forecolor="#000000" uuid="8de8fe0e-c20e-44a7-a35f-99ea940cf941"/>
+				<textElement>
+					<font fontName="Segoe UI" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No:185/7 Havelock Rd, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="173" height="29" forecolor="#FFFFFF" uuid="81b22151-1cf9-472a-a733-8b6dc45524c7"/>
+				<textElement>
+					<font fontName="Forte" size="16"/>
+				</textElement>
+				<text><![CDATA[arthur's Pizza (Pvt).Ltd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="173" height="20" forecolor="#FFFFFF" uuid="eb5b75ca-af6d-4d59-bd17-bc956797c476"/>
+				<textElement>
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[No:185/7 Havelock Rd, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="70" width="143" height="18" forecolor="#FFFFFF" uuid="7283cbd2-aee4-4a7d-88fd-b69d9311958d"/>
+				<textElement>
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Colombo 00500 ,Sri Lanka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-433" y="67" width="100" height="20" uuid="92fff9e0-06b8-4f08-b15f-e859b5a2eaf6"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="100" height="18" forecolor="#FFFFFF" uuid="2fab6aca-9978-4a8e-a484-de0e8c8a8ba1"/>
+				<textElement>
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Tel : 0113108788]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="161" y="57" width="231" height="36" forecolor="#FF0033" uuid="9df966ff-260a-46dc-bf2b-cc45d2abc9e8"/>
+				<textElement>
+					<font fontName="Segoe UI" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Best Selling Report]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="496" y="57" width="59" height="20" forecolor="#FFFFFF" uuid="348e4cc0-593f-429f-82b0-57744f28bae4"/>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Start Date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="496" y="79" width="59" height="20" forecolor="#FFFFFF" uuid="35ba7506-6997-4f7c-aa1f-05af8c31fcae"/>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{End Date}]]></textFieldExpression>
+			</textField>
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="102" y="99" width="353" height="201" uuid="2b699de2-f388-4663-bcd3-75fbe98b4f14"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{Product Name}]]></keyExpression>
+					<valueExpression><![CDATA[$F{Sold Quantity}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="1" width="100" height="29" forecolor="#FF0033" uuid="d9c31cb4-910c-4ad8-9599-df2cc045bb71"/>
+				<textElement>
+					<font fontName="Segoe UI" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="1" width="137" height="29" forecolor="#FF0033" uuid="d98c1041-b09e-46d2-b9b1-d033b90ed6e3"/>
+				<textElement>
+					<font fontName="Segoe UI" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="1" width="130" height="29" forecolor="#FF0033" uuid="bde26df7-cd68-4f96-a933-2d7424b0eb50"/>
+				<textElement>
+					<font fontName="Segoe UI" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sold Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="1" width="100" height="29" forecolor="#FF0033" uuid="15370a96-e996-4db3-8d59-ec2abb1bddee"/>
+				<textElement>
+					<font fontName="Segoe UI" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Income]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement x="12" y="22" width="100" height="20" uuid="32256228-436a-40e2-8ac2-2c5f2eaaa2a3"/>
+				<textElement>
+					<font fontName="Segoe UI" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Rank}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="143" y="22" width="166" height="20" uuid="79151272-5764-4a74-873f-30e090bbf2e0"/>
+				<textElement>
+					<font fontName="Segoe UI" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Product Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="23" width="100" height="20" uuid="2245fd56-d879-49ca-acc2-f3d4745ac780"/>
+				<textElement>
+					<font fontName="Segoe UI" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sold Quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="22" width="100" height="20" uuid="238a1572-4fc4-4592-9a9b-f41e5fc6b7d9"/>
+				<textElement>
+					<font fontName="Segoe UI" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total Income}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="73" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="40" width="100" height="33" uuid="7d9f5a70-691f-4c52-a07e-c9ee9232f1ca"/>
+				<textElement>
+					<font fontName="Segoe UI" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="40" width="100" height="33" uuid="bc9bd5f3-c891-4b78-b01c-d1e94165f4e8"/>
+				<textElement>
+					<font fontName="Segoe UI" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{otytotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="261" y="5" width="130" height="35" forecolor="#FF0033" uuid="e2f467d4-f0de-48a7-a57e-bd9659659f0a"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="5" width="133" height="35" forecolor="#FF0033" uuid="db9b9297-b329-4471-95a8-6465b2e9a4a0"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Income]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="34" width="555" height="20" backcolor="#000000" uuid="21e9fcf1-b8f7-49d9-9c6a-0966e1038ce4"/>
+			</rectangle>
+			<textField evaluationTime="Report">
+				<reportElement x="518" y="34" width="37" height="20" forecolor="#FFFFFF" uuid="4d5791e4-a8fe-4919-8d90-9e1915454097"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="34" width="122" height="20" forecolor="#FFFFFF" uuid="b6d69021-ee4a-405b-afed-d24d2951ff0e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="122" y="34" width="100" height="20" forecolor="#FFFFFF" uuid="b86e831b-0e7c-4b2e-9c5a-3c0d6c121b6b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
